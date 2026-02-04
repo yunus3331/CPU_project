@@ -10,19 +10,35 @@ entity instruction_memory is
 end instruction_memory;
 
 architecture rtl of instruction_memory is
-
-    type rom_t is array (0 to 255) of std_logic_vector(15 downto 0);
-
-    constant ROM : rom_t := (
-        0 => x"1123",
-        1 => x"2456",
-        2 => x"3789",
-        3 => x"4000",
-        others => x"0000"
+    type mem_t is array (0 to 255) of std_logic_vector(15 downto 0);
+    signal mem : mem_t := (
+        
+        0  => "0110000100000000",
+        
+        1  => "0110001000000001",
+        
+        2  => "0000001100010010",
+        
+        3  => "0001010000010010",
+        
+        4  => "0011010100110100",
+        
+        5  => "0010011001010010",
+        
+        6  => "0100011101010100",
+        
+        7  => "0101100001110000",
+        
+        8  => "0111100000000010",
+        
+        9  => "0110100100000010",
+        
+        10 => "0001101010010101",
+        
+        11 => "0111101000000100",
+        
+        others => (others => '0')
     );
-
 begin
-
-    instruction <= ROM(to_integer(unsigned(addr)));
-
+    instruction <= mem(to_integer(unsigned(addr)));
 end rtl;
